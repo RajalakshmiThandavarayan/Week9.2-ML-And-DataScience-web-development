@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 45px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: linear-gradient(135deg, #667eea, #764ba2);
+
+            color: white;
+            font-size: 38px;
+
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .result-box {
+            padding: 25px 20px;
+            margin: 20px 0;
+
+            border-radius: 14px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(102, 126, 234, 0.1),
+                rgba(118, 75, 162, 0.1)
+            );
+
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .result-label {
+            color: #718096;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .prediction {
+            color: #667eea;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .predict-again {
+            display: inline-block;
+
+            width: 100%;
+            padding: 14px;
+
+            margin-top: 10px;
+
+            border-radius: 10px;
+
+            background: linear-gradient(135deg, #667eea, #764ba2);
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            transition: all 0.3s ease;
+        }
+
+        .predict-again:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            margin-top: 22px;
+
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 35px 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .prediction {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <!-- Result Icon -->
+            <div class="result-icon">
+                ✓
+            </div>
+
+            <!-- Heading -->
+            <h2>Prediction Result</h2>
+
+            <p class="subtitle">
+                Your SDOH health risk prediction has been generated.
+            </p>
+
+            <!-- Prediction Result -->
+            <div class="result-box">
+
+                <div class="result-label">
+                    Predicted Risk
+                </div>
+
+                <div class="prediction">
+                    {{ prediction }}
+                </div>
+
+            </div>
+
+            <!-- Predict Again Button -->
+            <a href="/" class="predict-again">
+                Predict Again
+            </a>
+
+            <div class="footer">
+                SDOH Health Risk Prediction System
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

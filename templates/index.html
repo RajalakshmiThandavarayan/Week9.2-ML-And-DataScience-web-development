@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SDOH Risk Prediction</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            font-size: 32px;
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #d9e0ea;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #2d3748;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        input::placeholder {
+            color: #a0aec0;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .predict-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="header">
+                <div class="icon">❤</div>
+
+                <h2>SDOH Risk Prediction</h2>
+
+                <p class="subtitle">
+                    Enter the following information to predict health risk
+                </p>
+            </div>
+
+            <form action="/predict" method="POST">
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        placeholder="Enter your age"
+                        min="1"
+                        max="120"
+                        required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="annual_income">Annual Income</label>
+
+                    <input
+                        type="number"
+                        id="annual_income"
+                        name="annual_income"
+                        step="0.01"
+                        min="0"
+                        placeholder="Enter annual income"
+                        required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="financial_strain">Financial Strain</label>
+
+                    <select
+                        id="financial_strain"
+                        name="financial_strain"
+                        required>
+
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="diabetes">Diabetes</label>
+
+                    <select
+                        id="diabetes"
+                        name="diabetes"
+                        required>
+
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                    </select>
+                </div>
+
+
+                <button type="submit" class="predict-btn" value="Predict">
+                    Predict Risk
+                </button>
+
+            </form>
+
+            <div class="footer">
+                SDOH Health Risk Prediction System
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
