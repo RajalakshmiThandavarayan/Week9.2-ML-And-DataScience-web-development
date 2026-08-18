@@ -8,7 +8,6 @@
     <title>SDOH Health Risk Prediction</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -21,16 +20,12 @@
             padding: 35px 20px;
 
             background:
-                radial-gradient(
-                    circle at top left,
+                radial-gradient(circle at top left,
                     #8795f5,
-                    transparent 35%
-                ),
-                linear-gradient(
-                    135deg,
+                    transparent 35%),
+                linear-gradient(135deg,
                     #667eea,
-                    #764ba2
-                );
+                    #764ba2);
         }
 
         .container {
@@ -92,11 +87,9 @@
             justify-content: center;
 
             background:
-                linear-gradient(
-                    135deg,
+                linear-gradient(135deg,
                     #667eea,
-                    #764ba2
-                );
+                    #764ba2);
 
             color: white;
 
@@ -149,13 +142,10 @@
             transform-style: preserve-3d;
 
             transition:
-                transform 0.6s
-                cubic-bezier(
-                    0.4,
+                transform 0.6s cubic-bezier(0.4,
                     0.2,
                     0.2,
-                    1
-                );
+                    1);
         }
 
         .factor-card.active .factor-inner {
@@ -206,16 +196,12 @@
                 transform 0.25s;
         }
 
-        .factor-card:hover
-        .factor-front {
+        .factor-card:hover .factor-front {
             box-shadow:
-                0 8px 20px
-                rgba(
-                    102,
+                0 8px 20px rgba(102,
                     126,
                     234,
-                    0.2
-                );
+                    0.2);
         }
 
         .factor-icon {
@@ -241,24 +227,19 @@
 
         .factor-back {
             background:
-                linear-gradient(
-                    135deg,
+                linear-gradient(135deg,
                     #667eea,
-                    #764ba2
-                );
+                    #764ba2);
 
             color: white;
 
             transform: rotateY(180deg);
 
             box-shadow:
-                0 8px 20px
-                rgba(
-                    102,
+                0 8px 20px rgba(102,
                     126,
                     234,
-                    0.3
-                );
+                    0.3);
         }
 
         .factor-back h3 {
@@ -286,8 +267,7 @@
             border-radius: 20px;
 
             box-shadow:
-                0 20px 50px
-                rgba(0, 0, 0, 0.2);
+                0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -310,11 +290,9 @@
             justify-content: center;
 
             background:
-                linear-gradient(
-                    135deg,
+                linear-gradient(135deg,
                     #667eea,
-                    #764ba2
-                );
+                    #764ba2);
 
             color: white;
 
@@ -323,13 +301,10 @@
             font-size: 24px;
 
             box-shadow:
-                0 7px 18px
-                rgba(
-                    102,
+                0 7px 18px rgba(102,
                     126,
                     234,
-                    0.3
-                );
+                    0.3);
         }
 
         .form-header h2 {
@@ -402,10 +377,7 @@
             height: 44px;
 
             padding:
-                10px
-                12px
-                10px
-                38px;
+                10px 12px 10px 38px;
 
             border:
                 1px solid #d9e0ea;
@@ -439,13 +411,10 @@
             background: white;
 
             box-shadow:
-                0 0 0 3px
-                rgba(
-                    102,
+                0 0 0 3px rgba(102,
                     126,
                     234,
-                    0.12
-                );
+                    0.12);
         }
 
         select {
@@ -467,11 +436,9 @@
             border-radius: 9px;
 
             background:
-                linear-gradient(
-                    135deg,
+                linear-gradient(135deg,
                     #667eea,
-                    #764ba2
-                );
+                    #764ba2);
 
             color: white;
 
@@ -488,13 +455,10 @@
             transform: translateY(-2px);
 
             box-shadow:
-                0 8px 20px
-                rgba(
-                    102,
+                0 8px 20px rgba(102,
                     126,
                     234,
-                    0.4
-                );
+                    0.4);
         }
 
         .predict-btn:active {
@@ -579,7 +543,6 @@
             }
 
         }
-
     </style>
 
 </head>
@@ -595,11 +558,11 @@
         <div class="main-header">
 
             <h1>
-                Social Determinants of Health
+                AI-Driven SDOH Health Risk Prediction
             </h1>
 
             <p>
-                Health Risk Prediction System
+                Intelligent Health Risk Assessment System
             </p>
 
         </div>
@@ -624,10 +587,12 @@
 
             <p class="intro-text">
 
-                Social Determinants of Health (SDOH) are
-                conditions that influence a person's health
-                and well-being. Click a factor below to
-                learn more.
+                This AI-driven system uses selected
+                <strong>Social Determinants of Health (SDOH)</strong>
+                and health factors to predict an individual's
+                health risk.
+
+                Click a factor below to learn more.
 
             </p>
 
@@ -639,9 +604,7 @@
 
                 <!-- AGE -->
 
-                <div
-                    class="factor-card"
-                    onclick="flipCard(this)">
+                <div class="factor-card" onclick="flipCard(this)">
 
                     <div class="factor-inner">
 
@@ -689,9 +652,7 @@
 
                 <!-- INCOME -->
 
-                <div
-                    class="factor-card"
-                    onclick="flipCard(this)">
+                <div class="factor-card" onclick="flipCard(this)">
 
                     <div class="factor-inner">
 
@@ -739,9 +700,7 @@
 
                 <!-- FINANCIAL STRAIN -->
 
-                <div
-                    class="factor-card"
-                    onclick="flipCard(this)">
+                <div class="factor-card" onclick="flipCard(this)">
 
                     <div class="factor-inner">
 
@@ -789,9 +748,7 @@
 
                 <!-- DIABETES -->
 
-                <div
-                    class="factor-card"
-                    onclick="flipCard(this)">
+                <div class="factor-card" onclick="flipCard(this)">
 
                     <div class="factor-inner">
 
@@ -864,9 +821,7 @@
             </div>
 
 
-            <form
-                method="POST"
-                action="/predict">
+            <form method="POST" action="/predict">
 
 
                 <div class="form-grid">
@@ -886,14 +841,7 @@
                                 👤
                             </span>
 
-                            <input
-                                type="number"
-                                id="age"
-                                name="age"
-                                placeholder="Enter age"
-                                min="1"
-                                max="120"
-                                required>
+                            <input type="number" id="age" name="age" placeholder="Enter age" min="1" max="120" required>
 
                         </div>
 
@@ -914,14 +862,8 @@
                                 💰
                             </span>
 
-                            <input
-                                type="number"
-                                id="annual_income"
-                                name="annual_income"
-                                step="0.01"
-                                min="0"
-                                placeholder="Enter income"
-                                required>
+                            <input type="number" id="annual_income" name="annual_income" step="0.01" min="0"
+                                placeholder="Enter income" required>
 
                         </div>
 
@@ -942,10 +884,7 @@
                                 💳
                             </span>
 
-                            <select
-                                id="financial_strain"
-                                name="financial_strain"
-                                required>
+                            <select id="financial_strain" name="financial_strain" required>
 
                                 <option value="">
                                     Select
@@ -980,10 +919,7 @@
                                 🩺
                             </span>
 
-                            <select
-                                id="diabetes"
-                                name="diabetes"
-                                required>
+                            <select id="diabetes" name="diabetes" required>
 
                                 <option value="">
                                     Select
@@ -1009,9 +945,7 @@
 
                 <!-- ================= PREDICT BUTTON ================= -->
 
-                <button
-                    type="submit"
-                    class="predict-btn">
+                <button type="submit" class="predict-btn">
 
                     Predict Health Risk
 

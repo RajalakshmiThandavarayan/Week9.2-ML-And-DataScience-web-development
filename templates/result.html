@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Prediction Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI-Driven SDOH Prediction Result</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -17,181 +20,268 @@
 
         body {
             min-height: 100vh;
+
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            justify-content: center;
+
             padding: 20px;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #8795f5,
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
         }
 
-        .container {
+        .result-card {
+
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 22px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.2);
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.97);
-            padding: 45px 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-        }
+
+        /* Keep the original result icon */
 
         .result-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
+
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
 
             display: flex;
             align-items: center;
             justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
 
             border-radius: 50%;
 
-            background: linear-gradient(135deg, #667eea, #764ba2);
-
-            color: white;
-            font-size: 38px;
-
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        h2 {
-            color: #2d3748;
             font-size: 28px;
-            margin-bottom: 10px;
+
+            box-shadow:
+                0 7px 18px
+                rgba(102, 126, 234, 0.3);
         }
+
+
+        h1 {
+
+            color: #2d3748;
+
+            font-size: 27px;
+
+            margin-bottom: 7px;
+        }
+
 
         .subtitle {
+
             color: #718096;
-            font-size: 14px;
+
+            font-size: 13px;
+
             margin-bottom: 25px;
         }
 
+
+        /* Prediction Result */
+
         .result-box {
-            padding: 25px 20px;
-            margin: 20px 0;
+
+            padding: 22px;
 
             border-radius: 14px;
 
-            background: linear-gradient(
-                135deg,
-                rgba(102, 126, 234, 0.1),
-                rgba(118, 75, 162, 0.1)
-            );
+            background: #f7f8ff;
 
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            border: 1px solid #e4e7ff;
+
+            margin-bottom: 22px;
         }
 
         .result-label {
+
             color: #718096;
+
             font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            font-weight: 600;
+
+            margin-bottom: 8px;
         }
 
         .prediction {
-            color: #667eea;
-            font-size: 26px;
+
+            color: #4c51bf;
+
+            font-size: 25px;
+
             font-weight: 700;
         }
 
-        .predict-again {
-            display: inline-block;
 
-            width: 100%;
-            padding: 14px;
+        .description {
 
-            margin-top: 10px;
+            color: #667085;
 
-            border-radius: 10px;
+            font-size: 12px;
 
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            line-height: 1.6;
 
-            color: white;
-            text-decoration: none;
-
-            font-size: 16px;
-            font-weight: 600;
-
-            transition: all 0.3s ease;
+            margin-bottom: 25px;
         }
 
-        .predict-again:hover {
+
+        /* Predict Again Button */
+
+        .back-btn {
+
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .back-btn:hover {
+
             transform: translateY(-2px);
 
             box-shadow:
-                0 8px 20px rgba(102, 126, 234, 0.4);
+                0 8px 20px
+                rgba(102, 126, 234, 0.4);
         }
 
-        .footer {
-            margin-top: 22px;
 
-            color: #a0aec0;
-            font-size: 12px;
+        .note {
+
+            margin-top: 20px;
+
+            color: #9aa2b1;
+
+            font-size: 10px;
+
+            line-height: 1.5;
         }
 
-        @media (max-width: 600px) {
-            .card {
-                padding: 35px 20px;
-            }
-
-            h2 {
-                font-size: 24px;
-            }
-
-            .prediction {
-                font-size: 22px;
-            }
-        }
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <div class="card">
+    <div class="result-card">
 
-            <!-- Result Icon -->
-            <div class="result-icon">
-                ✓
-            </div>
 
-            <!-- Heading -->
-            <h2>Prediction Result</h2>
+        <!-- ORIGINAL ICON -->
 
-            <p class="subtitle">
-                Your SDOH health risk prediction has been generated.
+        <div class="result-icon">
+            ❤️
+        </div>
+
+
+        <!-- AI TITLE -->
+
+        <h1>
+            AI-Driven SDOH Prediction
+        </h1>
+
+
+        <p class="subtitle">
+            Health Risk Prediction Result
+        </p>
+
+
+        <!-- RESULT -->
+
+        <div class="result-box">
+
+            <p class="result-label">
+                AI Prediction
             </p>
 
-            <!-- Prediction Result -->
-            <div class="result-box">
-
-                <div class="result-label">
-                    Predicted Risk
-                </div>
-
-                <div class="prediction">
-                    {{ prediction }}
-                </div>
-
-            </div>
-
-            <!-- Predict Again Button -->
-            <a href="/" class="predict-again">
-                Predict Again
-            </a>
-
-            <div class="footer">
-                SDOH Health Risk Prediction System
-            </div>
+            <h2 class="prediction">
+                {{ prediction }}
+            </h2>
 
         </div>
 
+
+        <!-- DESCRIPTION -->
+
+        <p class="description">
+
+            The AI model generated this prediction
+            using the social, economic, and
+            health-related information provided.
+
+        </p>
+
+
+        <!-- BACK BUTTON -->
+
+        <a href="/" class="back-btn">
+            ← Predict Again
+        </a>
+
+
+        <!-- NOTE -->
+
+        <p class="note">
+
+            This prediction is intended for educational
+            and research purposes only and should not
+            replace professional medical advice.
+
+        </p>
+
+
     </div>
+
 
 </body>
 
