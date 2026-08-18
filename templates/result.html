@@ -4,10 +4,12 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <title>AI-Driven SDOH Prediction Result</title>
+
 
     <style>
 
@@ -15,87 +17,196 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
         }
 
+
+        /* ================= BODY ================= */
+
         body {
+
             min-height: 100vh;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             padding: 20px;
 
             background:
+
                 radial-gradient(
                     circle at top left,
                     #8795f5,
                     transparent 35%
                 ),
+
                 linear-gradient(
                     135deg,
                     #667eea,
                     #764ba2
                 );
         }
+
+
+        /* ================= RESULT CARD ================= */
 
         .result-card {
 
             width: 100%;
-            max-width: 550px;
 
-            background: white;
+            max-width: 560px;
+
+            background:
+                rgba(255, 255, 255, 0.98);
 
             padding: 40px;
 
-            border-radius: 22px;
+            border-radius: 24px;
 
             text-align: center;
 
             box-shadow:
-                0 20px 50px
-                rgba(0, 0, 0, 0.2);
+                0 25px 60px
+                rgba(0, 0, 0, 0.22);
+
+            animation:
+                cardAppear 0.7s ease;
         }
 
 
-        /* Keep the original result icon */
+        /* ================= CHECK ICON ================= */
 
         .result-icon {
 
-            width: 65px;
-            height: 65px;
+            position: relative;
 
-            margin: 0 auto 15px;
+            width: 82px;
+
+            height: 82px;
+
+            margin:
+                0 auto 18px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
+            border-radius: 50%;
+
             background:
+
                 linear-gradient(
                     135deg,
-                    #667eea,
-                    #764ba2
+                    #4fd1a5,
+                    #38b2ac
                 );
 
             color: white;
 
-            border-radius: 50%;
+            font-size: 43px;
 
-            font-size: 28px;
+            font-weight: 600;
 
             box-shadow:
-                0 7px 18px
-                rgba(102, 126, 234, 0.3);
+
+                0 10px 28px
+                rgba(
+                    56,
+                    178,
+                    172,
+                    0.32
+                );
+
+            animation:
+                successAppear 0.6s ease;
         }
 
+
+        /* Soft outer ring */
+
+        .result-icon::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 102px;
+
+            height: 102px;
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(
+                    79,
+                    209,
+                    165,
+                    0.25
+                );
+
+            animation:
+                successPulse
+                2.5s
+                ease-out
+                infinite;
+        }
+
+
+        /* Small sparkle */
+
+        .result-icon::after {
+
+            content: "✦";
+
+            position: absolute;
+
+            top: -3px;
+
+            right: -1px;
+
+            width: 23px;
+
+            height: 23px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: white;
+
+            color: #38b2ac;
+
+            border-radius: 50%;
+
+            font-size: 11px;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* ================= TITLE ================= */
 
         h1 {
 
             color: #2d3748;
 
-            font-size: 27px;
+            font-size: 28px;
+
+            font-weight: 700;
 
             margin-bottom: 7px;
         }
@@ -107,43 +218,92 @@
 
             font-size: 13px;
 
-            margin-bottom: 25px;
+            margin-bottom: 27px;
         }
 
 
-        /* Prediction Result */
+        /* ================= RESULT BOX ================= */
 
         .result-box {
 
-            padding: 22px;
+            position: relative;
 
-            border-radius: 14px;
+            padding: 25px 20px;
 
-            background: #f7f8ff;
+            border-radius: 16px;
 
-            border: 1px solid #e4e7ff;
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #f7f8ff,
+                    #f0f2ff
+                );
+
+            border:
+                1px solid #e1e5ff;
 
             margin-bottom: 22px;
+
+            overflow: hidden;
         }
+
+
+        /* Decorative circle */
+
+        .result-box::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.07
+                );
+
+            top: -60px;
+
+            right: -40px;
+        }
+
 
         .result-label {
 
+            position: relative;
+
             color: #718096;
 
-            font-size: 13px;
+            font-size: 12px;
 
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
+
 
         .prediction {
 
+            position: relative;
+
             color: #4c51bf;
 
-            font-size: 25px;
+            font-size: 27px;
 
             font-weight: 700;
+
+            word-wrap: break-word;
         }
 
+
+        /* ================= DESCRIPTION ================= */
 
         .description {
 
@@ -151,23 +311,31 @@
 
             font-size: 12px;
 
-            line-height: 1.6;
+            line-height: 1.7;
 
             margin-bottom: 25px;
         }
 
 
-        /* Predict Again Button */
+        /* ================= BUTTON ================= */
 
         .back-btn {
 
-            display: inline-block;
+            display: inline-flex;
 
-            padding: 12px 25px;
+            align-items: center;
 
-            border-radius: 9px;
+            justify-content: center;
+
+            gap: 7px;
+
+            padding:
+                12px 26px;
+
+            border-radius: 10px;
 
             background:
+
                 linear-gradient(
                     135deg,
                     #667eea,
@@ -182,28 +350,178 @@
 
             font-weight: 600;
 
-            transition: 0.25s ease;
+            transition:
+                0.25s ease;
         }
+
 
         .back-btn:hover {
 
-            transform: translateY(-2px);
+            transform:
+                translateY(-3px);
 
             box-shadow:
-                0 8px 20px
-                rgba(102, 126, 234, 0.4);
+
+                0 10px 25px
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.4
+                );
         }
 
+
+        .back-btn:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* ================= NOTE ================= */
 
         .note {
 
             margin-top: 20px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid #edf0f5;
 
             color: #9aa2b1;
 
             font-size: 10px;
 
             line-height: 1.5;
+        }
+
+
+        /* ================= ANIMATIONS ================= */
+
+        @keyframes cardAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    scale(0.97);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        @keyframes successAppear {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.5);
+            }
+
+            70% {
+
+                transform:
+                    scale(1.08);
+            }
+
+            100% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        @keyframes successPulse {
+
+            0% {
+
+                transform:
+                    scale(0.85);
+
+                opacity: 0.7;
+            }
+
+            70% {
+
+                transform:
+                    scale(1.15);
+
+                opacity: 0;
+            }
+
+            100% {
+
+                transform:
+                    scale(1.15);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .result-card {
+
+                padding:
+                    30px 22px;
+            }
+
+
+            .result-icon {
+
+                width: 75px;
+
+                height: 75px;
+
+                font-size: 35px;
+            }
+
+
+            .result-icon::before {
+
+                width: 93px;
+
+                height: 93px;
+            }
+
+
+            h1 {
+
+                font-size: 24px;
+            }
+
+
+            .prediction {
+
+                font-size: 23px;
+            }
+
         }
 
     </style>
@@ -217,14 +535,14 @@
     <div class="result-card">
 
 
-        <!-- ORIGINAL ICON -->
+        <!-- ================= RESULT ICON ================= -->
 
         <div class="result-icon">
-            ❤️
+            ✓
         </div>
 
 
-        <!-- AI TITLE -->
+        <!-- ================= TITLE ================= -->
 
         <h1>
             AI-Driven SDOH Prediction
@@ -236,7 +554,7 @@
         </p>
 
 
-        <!-- RESULT -->
+        <!-- ================= PREDICTION ================= -->
 
         <div class="result-box">
 
@@ -251,7 +569,7 @@
         </div>
 
 
-        <!-- DESCRIPTION -->
+        <!-- ================= DESCRIPTION ================= -->
 
         <p class="description">
 
@@ -262,14 +580,20 @@
         </p>
 
 
-        <!-- BACK BUTTON -->
+        <!-- ================= PREDICT AGAIN ================= -->
 
-        <a href="/" class="back-btn">
-            ← Predict Again
+        <a
+            href="/"
+            class="back-btn">
+
+            <span>↻</span>
+
+            Predict Again
+
         </a>
 
 
-        <!-- NOTE -->
+        <!-- ================= DISCLAIMER ================= -->
 
         <p class="note">
 
