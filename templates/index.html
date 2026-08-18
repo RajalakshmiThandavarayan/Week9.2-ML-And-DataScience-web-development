@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SDOH Risk Prediction</title>
+    <title>SDOH Health Risk Prediction</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -17,227 +18,1072 @@
 
         body {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 20px;
+            padding: 35px 20px;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #8795f5,
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 850px;
+            margin: auto;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.97);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-        }
 
-        .header {
+        /* ================= HEADER ================= */
+
+        .main-header {
             text-align: center;
-            margin-bottom: 30px;
+            color: white;
+            margin-bottom: 25px;
         }
 
-        .header .icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 15px;
+        .main-header h1 {
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+
+        .main-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+
+        /* ================= INFO CARD ================= */
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.97);
+
+            padding: 24px 28px;
+
+            border-radius: 18px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.16);
+        }
+
+        .info-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            font-size: 32px;
-        }
 
-        h2 {
-            color: #2d3748;
-            font-size: 26px;
+            gap: 12px;
+
             margin-bottom: 8px;
         }
 
-        .subtitle {
+        .info-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            border-radius: 11px;
+
+            font-size: 20px;
+        }
+
+        .info-header h2 {
+            color: #2d3748;
+            font-size: 21px;
+        }
+
+        .intro-text {
+            color: #667085;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* ================= FLIP CARDS ================= */
+
+        .factors {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+        .factor-card {
+            height: 125px;
+
+            perspective: 1000px;
+
+            cursor: pointer;
+        }
+
+        .factor-inner {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 0.6s
+                cubic-bezier(
+                    0.4,
+                    0.2,
+                    0.2,
+                    1
+                );
+        }
+
+        .factor-card.active .factor-inner {
+            transform: rotateY(180deg);
+        }
+
+
+        /* Front + Back */
+
+        .factor-front,
+        .factor-back {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            backface-visibility: hidden;
+
+            -webkit-backface-visibility: hidden;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            padding: 12px;
+
+            text-align: center;
+        }
+
+
+        /* Front */
+
+        .factor-front {
+            background: #f7f8ff;
+
+            border: 1px solid #e4e7ff;
+
+            color: #4c51bf;
+
+            transition:
+                box-shadow 0.25s,
+                transform 0.25s;
+        }
+
+        .factor-card:hover
+        .factor-front {
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.2
+                );
+        }
+
+        .factor-icon {
+            font-size: 27px;
+
+            margin-bottom: 8px;
+        }
+
+        .factor-front strong {
+            font-size: 13px;
+        }
+
+        .click-text {
+            margin-top: 5px;
+
+            font-size: 9px;
+
+            color: #9aa2b1;
+        }
+
+
+        /* Back */
+
+        .factor-back {
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            transform: rotateY(180deg);
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.3
+                );
+        }
+
+        .factor-back h3 {
+            font-size: 13px;
+
+            margin-bottom: 6px;
+        }
+
+        .factor-back p {
+            font-size: 10px;
+
+            line-height: 1.45;
+
+            opacity: 0.95;
+        }
+
+
+        /* ================= FORM CARD ================= */
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.98);
+
+            padding: 30px 35px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* ================= FORM HEADER ================= */
+
+        .form-header {
+            text-align: center;
+
+            margin-bottom: 22px;
+        }
+
+        .form-icon {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 24px;
+
+            box-shadow:
+                0 7px 18px
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.3
+                );
+        }
+
+        .form-header h2 {
+            color: #2d3748;
+
+            font-size: 23px;
+
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
             color: #718096;
-            font-size: 14px;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= FORM GRID ================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 16px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 0;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+
+            margin-bottom: 6px;
+
             color: #2d3748;
-            font-size: 14px;
+
+            font-size: 13px;
+
             font-weight: 600;
+        }
+
+
+        /* ================= INPUT ================= */
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 12px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 15px;
+
+            pointer-events: none;
         }
 
         input,
         select {
             width: 100%;
-            padding: 13px 15px;
-            border: 1px solid #d9e0ea;
-            border-radius: 10px;
-            background-color: #f8fafc;
-            color: #2d3748;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
 
-        input:focus,
-        select:focus {
-            border-color: #667eea;
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            height: 44px;
+
+            padding:
+                10px
+                12px
+                10px
+                38px;
+
+            border:
+                1px solid #d9e0ea;
+
+            border-radius: 9px;
+
+            background: #f8fafc;
+
+            color: #2d3748;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.25s ease;
         }
 
         input::placeholder {
             color: #a0aec0;
         }
 
+        input:hover,
+        select:hover {
+            border-color: #aeb8e8;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #667eea;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.12
+                );
+        }
+
         select {
             cursor: pointer;
         }
 
+
+        /* ================= BUTTON ================= */
+
         .predict-btn {
             width: 100%;
-            padding: 14px;
-            margin-top: 10px;
+
+            height: 45px;
+
+            margin-top: 18px;
+
             border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
             color: white;
-            font-size: 16px;
+
+            font-size: 14px;
+
             font-weight: 600;
+
             cursor: pointer;
-            transition: all 0.3s ease;
+
+            transition: 0.25s ease;
         }
 
         .predict-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    102,
+                    126,
+                    234,
+                    0.4
+                );
         }
 
         .predict-btn:active {
             transform: translateY(0);
         }
 
+
+        /* ================= DISCLAIMER ================= */
+
+        .disclaimer {
+            margin-top: 14px;
+
+            padding: 10px 12px;
+
+            background: #fff8e6;
+
+            border-left:
+                3px solid #f6c453;
+
+            border-radius: 7px;
+
+            color: #856404;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+        }
+
+
+        /* ================= FOOTER ================= */
+
         .footer {
             text-align: center;
-            margin-top: 20px;
+
+            margin-top: 12px;
+
             color: #a0aec0;
-            font-size: 12px;
+
+            font-size: 10px;
         }
 
-        @media (max-width: 600px) {
-            .card {
-                padding: 30px 20px;
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 650px) {
+
+            body {
+                padding: 25px 15px;
             }
 
-            h2 {
-                font-size: 22px;
+            .main-header h1 {
+                font-size: 26px;
             }
+
+            .info-card,
+            .form-card {
+                padding: 24px 20px;
+            }
+
+            .factors {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
         }
+
+
+        @media (max-width: 400px) {
+
+            .factors {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .main-header h1 {
+                font-size: 23px;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
     <div class="container">
 
-        <div class="card">
 
-            <div class="header">
-                <div class="icon">❤</div>
+        <!-- ================= HEADER ================= -->
 
-                <h2>SDOH Risk Prediction</h2>
+        <div class="main-header">
 
-                <p class="subtitle">
-                    Enter the following information to predict health risk
-                </p>
+            <h1>
+                Social Determinants of Health
+            </h1>
+
+            <p>
+                Health Risk Prediction System
+            </p>
+
+        </div>
+
+
+        <!-- ================= ABOUT SDOH ================= -->
+
+        <div class="info-card">
+
+            <div class="info-header">
+
+                <div class="info-icon">
+                    ℹ️
+                </div>
+
+                <h2>
+                    About SDOH
+                </h2>
+
             </div>
 
-            <form action="/predict" method="POST">
 
-                <div class="form-group">
-                    <label for="age">Age</label>
+            <p class="intro-text">
 
-                    <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        placeholder="Enter your age"
-                        min="1"
-                        max="120"
-                        required>
+                Social Determinants of Health (SDOH) are
+                conditions that influence a person's health
+                and well-being. Click a factor below to
+                learn more.
+
+            </p>
+
+
+            <!-- ================= FLIP CARDS ================= -->
+
+            <div class="factors">
+
+
+                <!-- AGE -->
+
+                <div
+                    class="factor-card"
+                    onclick="flipCard(this)">
+
+                    <div class="factor-inner">
+
+
+                        <!-- FRONT -->
+
+                        <div class="factor-front">
+
+                            <div class="factor-icon">
+                                👤
+                            </div>
+
+                            <strong>
+                                Age
+                            </strong>
+
+                            <span class="click-text">
+                                Click to learn
+                            </span>
+
+                        </div>
+
+
+                        <!-- BACK -->
+
+                        <div class="factor-back">
+
+                            <h3>
+                                Age
+                            </h3>
+
+                            <p>
+                                Age is an important factor
+                                that can influence health
+                                conditions and overall
+                                health risk.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <div class="form-group">
-                    <label for="annual_income">Annual Income</label>
+                <!-- INCOME -->
 
-                    <input
-                        type="number"
-                        id="annual_income"
-                        name="annual_income"
-                        step="0.01"
-                        min="0"
-                        placeholder="Enter annual income"
-                        required>
+                <div
+                    class="factor-card"
+                    onclick="flipCard(this)">
+
+                    <div class="factor-inner">
+
+
+                        <!-- FRONT -->
+
+                        <div class="factor-front">
+
+                            <div class="factor-icon">
+                                💰
+                            </div>
+
+                            <strong>
+                                Annual Income
+                            </strong>
+
+                            <span class="click-text">
+                                Click to learn
+                            </span>
+
+                        </div>
+
+
+                        <!-- BACK -->
+
+                        <div class="factor-back">
+
+                            <h3>
+                                Annual Income
+                            </h3>
+
+                            <p>
+                                Income can affect access
+                                to healthcare, resources,
+                                healthy food, and living
+                                conditions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <div class="form-group">
-                    <label for="financial_strain">Financial Strain</label>
+                <!-- FINANCIAL STRAIN -->
 
-                    <select
-                        id="financial_strain"
-                        name="financial_strain"
-                        required>
+                <div
+                    class="factor-card"
+                    onclick="flipCard(this)">
 
-                        <option value="">Select an option</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                    <div class="factor-inner">
 
-                    </select>
+
+                        <!-- FRONT -->
+
+                        <div class="factor-front">
+
+                            <div class="factor-icon">
+                                💳
+                            </div>
+
+                            <strong>
+                                Financial Strain
+                            </strong>
+
+                            <span class="click-text">
+                                Click to learn
+                            </span>
+
+                        </div>
+
+
+                        <!-- BACK -->
+
+                        <div class="factor-back">
+
+                            <h3>
+                                Financial Strain
+                            </h3>
+
+                            <p>
+                                Financial difficulties
+                                may affect access to
+                                healthcare and other
+                                essential needs.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <div class="form-group">
-                    <label for="diabetes">Diabetes</label>
+                <!-- DIABETES -->
 
-                    <select
-                        id="diabetes"
-                        name="diabetes"
-                        required>
+                <div
+                    class="factor-card"
+                    onclick="flipCard(this)">
 
-                        <option value="">Select an option</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                    <div class="factor-inner">
 
-                    </select>
+
+                        <!-- FRONT -->
+
+                        <div class="factor-front">
+
+                            <div class="factor-icon">
+                                🩺
+                            </div>
+
+                            <strong>
+                                Diabetes
+                            </strong>
+
+                            <span class="click-text">
+                                Click to learn
+                            </span>
+
+                        </div>
+
+
+                        <!-- BACK -->
+
+                        <div class="factor-back">
+
+                            <h3>
+                                Diabetes
+                            </h3>
+
+                            <p>
+                                Diabetes is a health
+                                condition that can
+                                contribute to overall
+                                health risk.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <button type="submit" class="predict-btn" value="Predict">
-                    Predict Risk
-                </button>
-
-            </form>
-
-            <div class="footer">
-                SDOH Health Risk Prediction System
             </div>
 
         </div>
 
+
+        <!-- ================= PREDICTION FORM ================= -->
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+
+                <div class="form-icon">
+                    ❤️
+                </div>
+
+                <h2>
+                    Health Risk Assessment
+                </h2>
+
+                <p>
+                    Enter the details below to generate a prediction.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="/predict">
+
+
+                <div class="form-grid">
+
+
+                    <!-- AGE -->
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Age
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                placeholder="Enter age"
+                                min="1"
+                                max="120"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANNUAL INCOME -->
+
+                    <div class="form-group">
+
+                        <label for="annual_income">
+                            Annual Income
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                💰
+                            </span>
+
+                            <input
+                                type="number"
+                                id="annual_income"
+                                name="annual_income"
+                                step="0.01"
+                                min="0"
+                                placeholder="Enter income"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FINANCIAL STRAIN -->
+
+                    <div class="form-group">
+
+                        <label for="financial_strain">
+                            Financial Strain
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                💳
+                            </span>
+
+                            <select
+                                id="financial_strain"
+                                name="financial_strain"
+                                required>
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="yes">
+                                    Yes
+                                </option>
+
+                                <option value="no">
+                                    No
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DIABETES -->
+
+                    <div class="form-group">
+
+                        <label for="diabetes">
+                            Diabetes
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🩺
+                            </span>
+
+                            <select
+                                id="diabetes"
+                                name="diabetes"
+                                required>
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="yes">
+                                    Yes
+                                </option>
+
+                                <option value="no">
+                                    No
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ================= PREDICT BUTTON ================= -->
+
+                <button
+                    type="submit"
+                    class="predict-btn">
+
+                    Predict Health Risk
+
+                </button>
+
+
+            </form>
+
+
+            <!-- ================= DISCLAIMER ================= -->
+
+            <div class="disclaimer">
+
+                <strong>Note:</strong>
+
+                This prediction is intended for educational
+                and research purposes only and should not
+                replace professional medical advice.
+
+            </div>
+
+
+            <!-- ================= FOOTER ================= -->
+
+            <div class="footer">
+
+                SDOH Health Risk Prediction System
+
+            </div>
+
+
+        </div>
+
     </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function flipCard(selectedCard) {
+
+            // Find the currently active card
+            const activeCard =
+                document.querySelector(
+                    ".factor-card.active"
+                );
+
+
+            // If another card is already open,
+            // close it first.
+            if (
+                activeCard &&
+                activeCard !== selectedCard
+            ) {
+
+                activeCard.classList.remove(
+                    "active"
+                );
+
+            }
+
+
+            // Toggle the selected card
+
+            selectedCard.classList.toggle(
+                "active"
+            );
+
+        }
+
+    </script>
 
 </body>
 
